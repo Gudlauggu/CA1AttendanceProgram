@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author Mecaa
  */
-public class APP extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
