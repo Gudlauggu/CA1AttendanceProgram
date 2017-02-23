@@ -17,7 +17,7 @@
             <TableColumn fx:id="clmAttending" maxWidth="1.7976931348623157E308" prefWidth="136.0" text="Attending" />
         </columns>
       </TableView>
-      <Button layoutX="388.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOff" text="Log off" />
+      <Button fx:id="btnLogOff" layoutX="388.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOff" text="Log off" />
       <ComboBox fx:id="CBLesson" layoutX="36.0" layoutY="23.0" prefWidth="150.0" promptText="Choose a lesson" />
    </children>
 </AnchorPane>

@@ -15,10 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,6 +40,10 @@ public class TeacherOverviewController implements Initializable
     private TableColumn<Student, String> clmAttending;
     @FXML
     private ComboBox<String> CBLesson;
+    @FXML
+    private Button btnLogOff;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -47,19 +53,26 @@ public class TeacherOverviewController implements Initializable
       {
         makeAStudent();
         updateFields();
-        groupChoicer();
+        cbChoicer();
 
       }
 
     @FXML
     private void logOff(ActionEvent event)
       {
+        Stage stage = (Stage) btnLogOff.getScene().getWindow();
+        stage.close();
       }
 
     private void updateFields()
       {
         clmName.setCellValueFactory(
                 new PropertyValueFactory("name"));
+        clmAbsence.setCellValueFactory(
+                new PropertyValueFactory("absencePercentage"));
+        clmAttending.setCellValueFactory(
+                new PropertyValueFactory(""));
+        
       }
 
     private void makeAStudent()
@@ -86,10 +99,14 @@ public class TeacherOverviewController implements Initializable
         });
       }
     
-    private void groupChoicer()//Sets the items in the choicebox
+    
+    
+    private void cbChoicer()//Sets the items in the choicebox
       {
         ObservableList<String> groups = FXCollections.observableArrayList("SCO", "ITO", "SDE");
         CBLesson.setItems(groups);
       }
+    
+    
 
 }
