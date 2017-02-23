@@ -38,7 +38,7 @@ import javafx.stage.StageStyle;
  * @author Mecaa
  */
 public class LoginController implements Initializable {
-
+    
     @FXML
     private TextField txtUsername;
     @FXML
@@ -59,6 +59,7 @@ public class LoginController implements Initializable {
     private static final int LOGGED_IN_TEACHER = 4;
     private int loginState = NOT_LOGGED_IN;
     private static final LoginHandler loginHandler = new LoginHandler();
+    private Person person = null;
     @FXML
     private Button btnHiddenButton;
     @FXML
@@ -71,43 +72,47 @@ public class LoginController implements Initializable {
     private Label lblClassAttendance;
     @FXML
     private Label lblConfirmation;
-
+    @FXML
+    private Label lblStudentName;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Image logo = new Image("file:DATA/BASYDVEST_negativ.png");
         imgLogo.setImage(logo);
     }
-
+    
     @FXML
     private void loginEvent(ActionEvent event) throws IOException {
         //Test Login
-        Person person = loginHandler.LoginChecker(txtUsername.getText().trim(), txtPassword.getText().trim());
+        person = loginHandler.LoginChecker(txtUsername.getText().trim(), txtPassword.getText().trim());
         if (loginState != LOGGED_IN
                 && person != null) {
             if (person.getClass() == Student.class) {
-
+                
                 loginState = LOGGED_IN;
                 activeState();
             } else if (person.getClass() == Teacher.class) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ca1attendanceprogram/GUI/View/TeacherOverview.fxml"));
-
+                
                 Parent root = loader.load();
                 Stage subStage = new Stage();
                 subStage.setScene(new Scene(root));
                 subStage.initStyle(StageStyle.UNDECORATED);
                 subStage.show();
-
+                Stage stage = (Stage) btnHiddenButton.getScene().getWindow();
+                stage.close();
+                
             }
         } else if (loginState == NOT_LOGGED_IN && person == null) {
-
+            
             loginState = WRONG_PASSWORD;
             activeState();
         } else if (loginState == LOGGED_IN) {
-
+            
         }
     }
-
+    
     @FXML
     /**
      * @Param closeEvent a dual event that triggers differently based on
@@ -124,7 +129,7 @@ public class LoginController implements Initializable {
             
         }
     }
-
+    
     public void activeState() {
         switch (loginState) {
             case LOGGED_IN:
@@ -138,6 +143,7 @@ public class LoginController implements Initializable {
                 btnHiddenButton.setVisible(true);
                 btnHiddenButton.setText("See Absense");
                 lblConfirmation.setVisible(false);
+                lblStudentName.setText(person.getName());
                 break;
             case NOT_LOGGED_IN:
                 txtUsername.setDisable(false);
@@ -146,7 +152,7 @@ public class LoginController implements Initializable {
                     txtUsername.clear();
                 }
                 txtPassword.clear();
-
+                
                 ancAttendence.setVisible(false);
                 btnHiddenButton.setVisible(false);
                 btnLogin.setText("Login");
@@ -162,17 +168,17 @@ public class LoginController implements Initializable {
                 break;
         }
     }
-
+    
     @FXML
     private void HiddenButtonEvent(ActionEvent event) {
         if (loginState == LOGGED_IN) {
-
+            
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Forgotten Password");
             alert.setHeaderText("Email: " + txtUsername.getText() + "@easv365.dk");
             alert.setContentText("Send password to this email");
-
+            
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 lblConfirmation.setVisible(true);
