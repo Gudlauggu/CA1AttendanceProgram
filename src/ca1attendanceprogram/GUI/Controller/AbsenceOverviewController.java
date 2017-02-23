@@ -27,7 +27,7 @@ public class AbsenceOverviewController implements Initializable
 {
 
     @FXML
-    private TableView<Student> tblAllAbsence;//TODO we should make this a Lesson instead of a Student
+    private TableView<?> tblAllAbsence;//TODO we should make this a Lesson instead of a Student
     @FXML
     private TableColumn<Student, String> clmClass;
     @FXML
@@ -41,6 +41,8 @@ public class AbsenceOverviewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+        makeATeacher();
+        updateFields();
 
       }
 
@@ -62,6 +64,16 @@ public class AbsenceOverviewController implements Initializable
                 new PropertyValueFactory("name"));
        
         
+      }
+    
+    private void makeATeacher()
+      {
+        for (int i = 0; i < 13; i++)
+          {
+            //tblAllAbsence.getItems().add(new Lesson("", "", 1, "", ""));
+            
+            
+          }
       }
 
 }
