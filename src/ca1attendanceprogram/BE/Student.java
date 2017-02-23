@@ -14,11 +14,17 @@ import java.util.Random;
 public class Student extends Person {
 
     private String absencePercentage;
+    private String attendingTest;
 
     public Student(String username, String email, int id, String password, String name) {
         super(username, email, id, password, name);
         Random rand = new Random();
         absencePercentage = rand.nextInt(101) + "";
+        if (rand.nextInt(2) == 1) {
+            attendingTest = "Offline";
+        } else {
+            attendingTest = "Online";
+        }
     }
 
     public String getAbsencePercentage() {

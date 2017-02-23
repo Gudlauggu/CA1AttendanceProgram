@@ -45,15 +45,6 @@ public class LoginController implements Initializable {
     private Button btnLogin;
     @FXML
     private Button btnClose;
-
-    // 0 = not logged int // 1 = logged in // 2 = wrong password, not logged in
-    private static final int NOT_LOGGED_IN = 1;
-    private static final int LOGGED_IN = 2;
-    private static final int WRONG_PASSWORD = 3;
-    private static final int LOGGED_IN_TEACHER = 4;
-    private int loginState = NOT_LOGGED_IN;
-    private static final LoginHandler loginHandler = new LoginHandler();
-    private Person person = null;
     @FXML
     private Button btnHiddenButton;
     @FXML
@@ -68,6 +59,15 @@ public class LoginController implements Initializable {
     private Label lblConfirmation;
     @FXML
     private Label lblStudentName;
+
+    // 0 = not logged int // 1 = logged in // 2 = wrong password, not logged in
+    private static final int NOT_LOGGED_IN = 1;
+    private static final int LOGGED_IN = 2;
+    private static final int WRONG_PASSWORD = 3;
+    private static final int LOGGED_IN_TEACHER = 4;
+    private int loginState = NOT_LOGGED_IN;
+    private static final LoginHandler loginHandler = new LoginHandler();
+    private Person person = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
