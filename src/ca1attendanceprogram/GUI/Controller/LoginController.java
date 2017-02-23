@@ -193,8 +193,10 @@ public class LoginController implements Initializable {
             }
         }
     }
-    /*
-    private void onKeyPressed(KeyCode code) {
 
-    }*/
+    public void onKeyPressed(KeyCode code) throws IOException {
+        if (code.equals(KeyCode.ENTER)) {
+            loginEvent(new ActionEvent());
+        }
+    }
 }
