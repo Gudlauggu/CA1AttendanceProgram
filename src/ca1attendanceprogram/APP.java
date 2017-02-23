@@ -5,10 +5,12 @@
  */
 package ca1attendanceprogram;
 
+import ca1attendanceprogram.GUI.Controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -20,12 +22,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/Login.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI/View/Login.fxml"));
+        Parent root = loader.load();
+        LoginController contr = loader.getController();
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
-        stage.show();
+        stage.show();/*
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            contr.);
+        });*/
     }
 
     /**

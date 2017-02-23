@@ -22,6 +22,7 @@ import javafx.scene.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.stage.Stage;
@@ -164,8 +165,17 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void HiddenButtonEvent(ActionEvent event) {
+    private void HiddenButtonEvent(ActionEvent event) throws IOException {
         if (loginState == LOGGED_IN) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ca1attendanceprogram/GUI/View/AbsenceOverview.fxml"));
+
+            Parent root = loader.load();
+            Stage subStage = new Stage();
+            subStage.setScene(new Scene(root));
+            subStage.initStyle(StageStyle.UNDECORATED);
+            subStage.show();
+            Stage stage = (Stage) btnHiddenButton.getScene().getWindow();
+            stage.close();
 
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -183,4 +193,8 @@ public class LoginController implements Initializable {
             }
         }
     }
+    /*
+    private void onKeyPressed(KeyCode code) {
+
+    }*/
 }
