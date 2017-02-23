@@ -17,7 +17,7 @@ public abstract class Person {
     private String password;
     private String name;
 
-    public Person(String userName, String email, int id, String password, String name) {
+    public Person(String username, String email, int id, String password, String name) {
         this.username = username;
         this.email = email;
         this.id = id;

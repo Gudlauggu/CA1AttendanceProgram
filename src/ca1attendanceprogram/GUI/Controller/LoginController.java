@@ -5,13 +5,21 @@
  */
 package ca1attendanceprogram.GUI.Controller;
 
+import ca1attendanceprogram.BE.Person;
+import ca1attendanceprogram.BE.Student;
+import ca1attendanceprogram.BE.Teacher;
+import ca1attendanceprogram.GUI.Model.LoginHandler;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,6 +30,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -44,11 +54,11 @@ public class LoginController implements Initializable {
 
     // 0 = not logged int // 1 = logged in // 2 = wrong password, not logged in
     private static final int NOT_LOGGED_IN = 1;
-    private static final int LOGGED_IN_STUDENT = 2;
+    private static final int LOGGED_IN = 2;
     private static final int WRONG_PASSWORD = 3;
     private static final int LOGGED_IN_TEACHER = 4;
     private int loginState = NOT_LOGGED_IN;
-
+    private static final LoginHandler loginHandler = new LoginHandler();
     @FXML
     private Button btnHiddenButton;
     @FXML
@@ -70,20 +80,30 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void loginEvent(ActionEvent event) {
+    private void loginEvent(ActionEvent event) throws IOException {
         //Test Login
-        if (loginState != LOGGED_IN_STUDENT && txtUsername.getText().equals("Haj")
-                && txtPassword.getText().equals("123")) {
-            
-            
-            loginState = LOGGED_IN_STUDENT;
-            activeState();
-        } else if (loginState == NOT_LOGGED_IN && txtUsername.getText().equals("Haj")
-                && !txtPassword.getText().equals("123")) {
+        Person person = loginHandler.LoginChecker(txtUsername.getText().trim(), txtPassword.getText().trim());
+        if (loginState != LOGGED_IN
+                && person != null) {
+            if (person.getClass() == Student.class) {
+
+                loginState = LOGGED_IN;
+                activeState();
+            } else if (person.getClass() == Teacher.class) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ca1attendanceprogram/GUI/View/TeacherOverview.fxml"));
+
+                Parent root = loader.load();
+                Stage subStage = new Stage();
+                subStage.setScene(new Scene(root));
+                subStage.initStyle(StageStyle.UNDECORATED);
+                subStage.show();
+
+            }
+        } else if (loginState == NOT_LOGGED_IN && person == null) {
 
             loginState = WRONG_PASSWORD;
             activeState();
-        } else if (loginState == LOGGED_IN_STUDENT) {
+        } else if (loginState == LOGGED_IN) {
 
         }
     }
@@ -95,19 +115,19 @@ public class LoginController implements Initializable {
      *
      */
     private void closeEvent(ActionEvent event) {
-        if (loginState != LOGGED_IN_STUDENT) {
+        if (loginState != LOGGED_IN) {
             Platform.exit();
         }
-        if (loginState == LOGGED_IN_STUDENT) {
+        if (loginState == LOGGED_IN) {
             loginState = NOT_LOGGED_IN;
             activeState();
-
+            
         }
     }
 
     public void activeState() {
         switch (loginState) {
-            case LOGGED_IN_STUDENT:
+            case LOGGED_IN:
                 txtUsername.setDisable(true);
                 txtPassword.setDisable(true);
                 btnLogin.setText("Attend Class");
@@ -145,7 +165,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void HiddenButtonEvent(ActionEvent event) {
-        if (loginState == LOGGED_IN_STUDENT) {
+        if (loginState == LOGGED_IN) {
 
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
