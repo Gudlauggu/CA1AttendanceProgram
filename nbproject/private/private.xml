@@ -14,7 +14,9 @@
         <group>
             <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/BE/Student.java</file>
             <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/GUI/Controller/LoginController.java</file>
-            <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/GUI/Controller/TeacherOverviewController.java</file>
+            <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/GUI/Controller/AbsenceOverviewController.java</file>
+            <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/BE/Lesson.java</file>
+            <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/BLL/LessonHandler.java</file>
             <file>file:/C:/Users/Mechaa/Documents/GitHub/CA1AttendanceProgram/src/ca1attendanceprogram/App.java</file>
         </group>
     </open-files>

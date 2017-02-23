@@ -28,8 +28,7 @@ import javafx.stage.Stage;
  *
  * @author Mechaa
  */
-public class AbsenceOverviewController implements Initializable
-{
+public class AbsenceOverviewController implements Initializable {
 
     @FXML
     private TableView<Lesson> tblAllAbsence;
@@ -50,28 +49,25 @@ public class AbsenceOverviewController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-      {
+    public void initialize(URL url, ResourceBundle rb) {
 
         updateFields();
 
-      }
+    }
 
     @FXML
-    private void sendRequest(ActionEvent event)
-      {
-      }
+    private void sendRequest(ActionEvent event) {
+    }
 
     @FXML
-    private void logOff(ActionEvent event)
-      {
+    private void logOff(ActionEvent event) {
         Stage stage = (Stage) btnLogOff.getScene().getWindow();
         stage.close();
-      }
+    }
 
-    private void updateFields()
-      {
+    private void updateFields() {
         lessons.addAll(lessonHandler.getLessons());
+        tblAllAbsence.setItems(lessons);
         clmTeacher.setCellValueFactory(
                 new PropertyValueFactory("teacher"));
         clmDate.setCellValueFactory(
@@ -79,6 +75,6 @@ public class AbsenceOverviewController implements Initializable
         clmClass.setCellValueFactory(
                 new PropertyValueFactory("name"));
 
-      }
+    }
 
 }
