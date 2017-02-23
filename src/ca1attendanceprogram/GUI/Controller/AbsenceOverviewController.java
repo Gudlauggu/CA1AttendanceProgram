@@ -5,33 +5,63 @@
  */
 package ca1attendanceprogram.GUI.Controller;
 
+import ca1attendanceprogram.BE.Student;
+import ca1attendanceprogram.BE.Teacher;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Mechaa
  */
-public class AbsenceOverviewController implements Initializable {
+public class AbsenceOverviewController implements Initializable
+{
+
+    @FXML
+    private TableView<Student> tblAllAbsence;//TODO we should make this a Lesson instead of a Student
+    @FXML
+    private TableColumn<Student, String> clmClass;
+    @FXML
+    private TableColumn<Teacher, String> clmTeacher;
+    @FXML
+    private Button btnLogOff;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+    public void initialize(URL url, ResourceBundle rb)
+      {
+
+      }
 
     @FXML
-    private void sendRequest(ActionEvent event) {
-    }
+    private void sendRequest(ActionEvent event)
+      {
+      }
 
     @FXML
-    private void logOff(ActionEvent event) {
-    }
+    private void logOff(ActionEvent event)
+      {
+        Stage stage = (Stage) btnLogOff.getScene().getWindow();
+        stage.close();
+      }
     
+    private void updateFields()
+      {
+        clmTeacher.setCellValueFactory(
+                new PropertyValueFactory("name"));
+       
+        
+      }
+
 }
