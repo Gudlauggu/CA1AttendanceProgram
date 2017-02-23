@@ -21,7 +21,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeEvent" prefHeight="37.0" prefWidth="138.0" text="Quit" textFill="WHITE" />
+            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeEvent" prefHeight="37.0" prefWidth="140.0" text="Quit" textFill="WHITE" />
                 <Button id="hiddenButton" fx:id="btnHiddenButton" alignment="CENTER" mnemonicParsing="false" onAction="#HiddenButtonEvent" prefHeight="37.0" prefWidth="182.0" text="Forgotten Password?" textFill="WHITE" visible="false" />
          </children>
          <padding>
