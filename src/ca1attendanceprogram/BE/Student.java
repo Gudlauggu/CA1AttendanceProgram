@@ -27,6 +27,16 @@ public class Student extends Person {
         }
     }
 
+    public String getAttendingTest()
+      {
+        return attendingTest;
+      }
+
+    public void setAttendingTest(String attendingTest)
+      {
+        this.attendingTest = attendingTest;
+      }
+
     public String getAbsencePercentage() {
         return absencePercentage;
     }

@@ -54,6 +54,7 @@ public class TeacherOverviewController implements Initializable
         makeAStudent();
         updateFields();
         cbChoicer();
+        addListener();
 
       }
 
@@ -71,13 +72,13 @@ public class TeacherOverviewController implements Initializable
         clmAbsence.setCellValueFactory(
                 new PropertyValueFactory("absencePercentage"));
         clmAttending.setCellValueFactory(
-                new PropertyValueFactory(""));
+                new PropertyValueFactory("attendingTest"));
         
       }
 
     private void makeAStudent()
       {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 13; i++)
           {
             tblAllLessons.getItems().add(new Student("stefaan" + i, "steven@gmail.com", 1 + i, "***", "Steven Nielssen"));
           }
@@ -91,8 +92,9 @@ public class TeacherOverviewController implements Initializable
             public void changed(ObservableValue ov, Number value, Number new_value)
               {
                 CBLesson.getSelectionModel().select(new_value.intValue());
-                
-                
+                tblAllLessons.getItems().clear();
+                makeAStudent();
+                updateFields();
                 tblAllLessons.refresh();
               }
 
