@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="540.0" stylesheets="@../CSS/MainLayout.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca1attendanceprogram.GUI.Controller.TeacherOverviewController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="540.0" stylesheets="@../View/MainLayout.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca1attendanceprogram.GUI.Controller.TeacherOverviewController">
    <children>
       <HBox layoutY="654.0" prefHeight="0.0" prefWidth="534.0" styleClass="hBox" />
       <TableView fx:id="tblAllLessons" layoutX="11.0" layoutY="70.0" prefHeight="442.0" prefWidth="519.0">
         <columns>
-          <TableColumn fx:id="clmName" maxWidth="1.7976931348623157E308" prefWidth="157.0" text="Name" />
-          <TableColumn fx:id="clmAbsence" maxWidth="1.7976931348623157E308" prefWidth="157.0" text="Absence" />
-            <TableColumn fx:id="clmAttending" maxWidth="1.7976931348623157E308" prefWidth="157.0" text="Attending" />
+          <TableColumn fx:id="clmName" maxWidth="1.7976931348623157E308" prefWidth="227.0" text="Name" />
+          <TableColumn fx:id="clmAbsence" maxWidth="1.7976931348623157E308" prefWidth="155.0" text="Absence" />
+            <TableColumn fx:id="clmAttending" maxWidth="1.7976931348623157E308" prefWidth="136.0" text="Attending" />
         </columns>
       </TableView>
-      <Button layoutX="390.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOff" text="Log off" />
+      <Button layoutX="388.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOff" text="Log off" />
       <ComboBox layoutX="36.0" layoutY="23.0" prefWidth="150.0" promptText="Choose a class" />
    </children>
 </AnchorPane>

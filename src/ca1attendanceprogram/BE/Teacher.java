@@ -9,10 +9,12 @@ package ca1attendanceprogram.BE;
  *
  * @author Mecaa
  */
-public class Teacher extends Person {
+public class Teacher extends Person
+{
 
-    public Teacher(String username, String email, int id, String password, String name) {
+    public Teacher(String username, String email, int id, String password, String name)
+      {
         super(username, email, id, password, name);
-    }
+      }
 
 }
