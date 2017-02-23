@@ -11,14 +11,14 @@ package ca1attendanceprogram.BE;
  */
 public abstract class Person {
 
-    private String userName;
+    private String username;
     private String email;
     private int id;
     private String password;
     private String name;
 
     public Person(String userName, String email, int id, String password, String name) {
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.id = id;
         this.password = password;
@@ -58,11 +58,11 @@ public abstract class Person {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = username;
     }
 
 }

@@ -28,7 +28,7 @@ import javafx.scene.layout.AnchorPane;
  * @author Mecaa
  */
 public class LoginController implements Initializable {
-    
+
     @FXML
     private TextField txtUsername;
     @FXML
@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
     private static final int LOGGED_IN = 2;
     private static final int WRONG_PASSWORD = 3;
     private int loginState = NOT_LOGGED_IN;
-    
+
     @FXML
     private Button btnHiddenButton;
     @FXML
@@ -60,14 +60,14 @@ public class LoginController implements Initializable {
     private Label lblClassAttendance;
     @FXML
     private Label lblConfirmation;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Image logo = new Image("file:/C:/Users/Mecaa/Desktop/School/NetBeans/CA1AttendanceProgram/DATA/BASYDVEST_negativ.png");
+        Image logo = new Image("file:DATA/BASYDVEST_negativ.png");
         imgLogo.setImage(logo);
     }
-    
+
     @FXML
     private void loginEvent(ActionEvent event) {
         //Test Login
@@ -77,14 +77,14 @@ public class LoginController implements Initializable {
             activeState();
         } else if (loginState == NOT_LOGGED_IN && txtUsername.getText().equals("Haj")
                 && !txtPassword.getText().equals("123")) {
-            
+
             loginState = WRONG_PASSWORD;
             activeState();
         } else if (loginState == LOGGED_IN) {
-            
+
         }
     }
-    
+
     @FXML
     /**
      * @Param closeEvent a dual event that triggers differently based on
@@ -98,10 +98,10 @@ public class LoginController implements Initializable {
         if (loginState == LOGGED_IN) {
             loginState = NOT_LOGGED_IN;
             activeState();
-            
+
         }
     }
-    
+
     public void activeState() {
         switch (loginState) {
             case LOGGED_IN:
@@ -123,7 +123,7 @@ public class LoginController implements Initializable {
                     txtUsername.clear();
                 }
                 txtPassword.clear();
-                
+
                 ancAttendence.setVisible(false);
                 btnHiddenButton.setVisible(false);
                 btnLogin.setText("Login");
@@ -137,17 +137,17 @@ public class LoginController implements Initializable {
                 break;
         }
     }
-    
+
     @FXML
     private void HiddenButtonEvent(ActionEvent event) {
         if (loginState == LOGGED_IN) {
-            
+
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Forgotten Password");
             alert.setHeaderText("Email: " + txtUsername.getText() + "@easv365.dk");
             alert.setContentText("Send password to this email");
-            
+
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 lblConfirmation.setVisible(true);

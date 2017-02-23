@@ -11,8 +11,8 @@ package ca1attendanceprogram.BE;
  */
 public class Student extends Person {
 
-    public Student(String userName, String email, int id, String password, String name) {
-        super(userName, email, id, password, name);
+    public Student(String username, String email, int id, String password, String name) {
+        super(username, email, id, password, name);
     }
 
 }
