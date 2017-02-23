@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="540.0" stylesheets="@../CSS/MainLayout.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca1attendanceprogram.GUI.Controller.TeacherOverviewController">
+   <children>
+      <HBox layoutY="654.0" prefHeight="46.0" prefWidth="540.0" styleClass="hBox" />
+      <TableView fx:id="tblAllLessons" layoutX="14.0" layoutY="14.0" prefHeight="632.0" prefWidth="511.0">
+        <columns>
+          <TableColumn fx:id="clmTest1" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="clmTest" prefWidth="435.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
