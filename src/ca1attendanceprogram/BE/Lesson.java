@@ -5,8 +5,11 @@
  */
 package ca1attendanceprogram.BE;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -14,17 +17,33 @@ import java.util.Date;
  */
 public class Lesson {
 
-    private Teacher teacher;
+    private String teacher;
     private ArrayList<Student> students = new ArrayList();
     private Date date;
+    private String name;
 
-    public Lesson(Teacher teacher, Date date) {
+    public Lesson(String teacher, String name) {
+        Random rand = new Random();
         this.teacher = teacher;
-        this.date = date;
 
+        Calendar cal = Calendar.getInstance();
+        int month = rand.nextInt(12);
+        int year;
+        while (month < 3 && month > 7) {
+            month = rand.nextInt(12);
+        }
+        if (month < 4) {
+            year = 2017;
+        } else {
+            year = 2016;
+        }
+
+        cal.set(year, month, rand.nextInt(28) + 1); //Year, month and day of month
+        date = cal.getTime();
+        this.name = name;
     }
 
-    public Teacher getTeacher() {
+    public String getTeacher() {
         return teacher;
     }
 
@@ -36,7 +55,7 @@ public class Lesson {
         return date;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(String teacher) {
         this.teacher = teacher;
     }
 
