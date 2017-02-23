@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca1attendanceprogram.GUI.Model;
+package ca1attendanceprogram.BLL;
 
 import ca1attendanceprogram.BE.Person;
 import ca1attendanceprogram.BE.Student;
