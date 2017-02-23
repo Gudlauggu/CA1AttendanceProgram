@@ -18,6 +18,6 @@
         </columns>
       </TableView>
       <Button layoutX="388.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOff" text="Log off" />
-      <ComboBox layoutX="36.0" layoutY="23.0" prefWidth="150.0" promptText="Choose a class" />
+      <ComboBox fx:id="CBLesson" layoutX="36.0" layoutY="23.0" prefWidth="150.0" promptText="Choose a lesson" />
    </children>
 </AnchorPane>
