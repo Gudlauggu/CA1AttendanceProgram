@@ -13,19 +13,19 @@ import java.util.Random;
  */
 public class Student extends Person {
 
-    private int absencePercentage;
+    private String absencePercentage;
 
     public Student(String username, String email, int id, String password, String name) {
         super(username, email, id, password, name);
         Random rand = new Random();
-        absencePercentage = rand.nextInt(101);
+        absencePercentage = rand.nextInt(101) + "";
     }
 
-    public int getAbsencePercentage() {
+    public String getAbsencePercentage() {
         return absencePercentage;
     }
 
-    public void setAbsencePercentage(int absencePercentage) {
+    public void setAbsencePercentage(String absencePercentage) {
         this.absencePercentage = absencePercentage;
     }
 
