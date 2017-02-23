@@ -5,10 +5,15 @@
  */
 package ca1attendanceprogram.GUI.Controller;
 
+import ca1attendanceprogram.BE.Lesson;
 import ca1attendanceprogram.BE.Student;
 import ca1attendanceprogram.BE.Teacher;
+import ca1attendanceprogram.BLL.LessonHandler;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,13 +32,19 @@ public class AbsenceOverviewController implements Initializable
 {
 
     @FXML
-    private TableView<?> tblAllAbsence;//TODO we should make this a Lesson instead of a Student
+    private TableView<Lesson> tblAllAbsence;
     @FXML
-    private TableColumn<Student, String> clmClass;
+    private TableColumn<Lesson, String> clmClass;
     @FXML
-    private TableColumn<Teacher, String> clmTeacher;
+    private TableColumn<Lesson, String> clmTeacher;
     @FXML
     private Button btnLogOff;
+    @FXML
+    private TableColumn<Lesson, Date> clmDate;
+
+    LessonHandler lessonHandler = new LessonHandler();
+    private static ObservableList<Lesson> lessons
+            = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -41,7 +52,7 @@ public class AbsenceOverviewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        makeATeacher();
+
         updateFields();
 
       }
@@ -57,23 +68,17 @@ public class AbsenceOverviewController implements Initializable
         Stage stage = (Stage) btnLogOff.getScene().getWindow();
         stage.close();
       }
-    
+
     private void updateFields()
       {
+        lessons.addAll(lessonHandler.getLessons());
         clmTeacher.setCellValueFactory(
+                new PropertyValueFactory("teacher"));
+        clmDate.setCellValueFactory(
+                new PropertyValueFactory("date"));
+        clmClass.setCellValueFactory(
                 new PropertyValueFactory("name"));
-       
-        
-      }
-    
-    private void makeATeacher()
-      {
-        for (int i = 0; i < 13; i++)
-          {
-            //tblAllAbsence.getItems().add(new Lesson("", "", 1, "", ""));
-            
-            
-          }
+
       }
 
 }
