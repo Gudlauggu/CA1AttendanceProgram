@@ -44,8 +44,9 @@ public class LoginController implements Initializable {
 
     // 0 = not logged int // 1 = logged in // 2 = wrong password, not logged in
     private static final int NOT_LOGGED_IN = 1;
-    private static final int LOGGED_IN = 2;
+    private static final int LOGGED_IN_STUDENT = 2;
     private static final int WRONG_PASSWORD = 3;
+    private static final int LOGGED_IN_TEACHER = 4;
     private int loginState = NOT_LOGGED_IN;
 
     @FXML
@@ -71,16 +72,18 @@ public class LoginController implements Initializable {
     @FXML
     private void loginEvent(ActionEvent event) {
         //Test Login
-        if (loginState != LOGGED_IN && txtUsername.getText().equals("Haj")
+        if (loginState != LOGGED_IN_STUDENT && txtUsername.getText().equals("Haj")
                 && txtPassword.getText().equals("123")) {
-            loginState = LOGGED_IN;
+            
+            
+            loginState = LOGGED_IN_STUDENT;
             activeState();
         } else if (loginState == NOT_LOGGED_IN && txtUsername.getText().equals("Haj")
                 && !txtPassword.getText().equals("123")) {
 
             loginState = WRONG_PASSWORD;
             activeState();
-        } else if (loginState == LOGGED_IN) {
+        } else if (loginState == LOGGED_IN_STUDENT) {
 
         }
     }
@@ -92,10 +95,10 @@ public class LoginController implements Initializable {
      *
      */
     private void closeEvent(ActionEvent event) {
-        if (loginState != LOGGED_IN) {
+        if (loginState != LOGGED_IN_STUDENT) {
             Platform.exit();
         }
-        if (loginState == LOGGED_IN) {
+        if (loginState == LOGGED_IN_STUDENT) {
             loginState = NOT_LOGGED_IN;
             activeState();
 
@@ -104,7 +107,7 @@ public class LoginController implements Initializable {
 
     public void activeState() {
         switch (loginState) {
-            case LOGGED_IN:
+            case LOGGED_IN_STUDENT:
                 txtUsername.setDisable(true);
                 txtPassword.setDisable(true);
                 btnLogin.setText("Attend Class");
@@ -135,12 +138,14 @@ public class LoginController implements Initializable {
                 btnHiddenButton.getStyleClass().remove("button");
                 btnHiddenButton.getStyleClass().add("button-small");
                 break;
+            case LOGGED_IN_TEACHER:
+                break;
         }
     }
 
     @FXML
     private void HiddenButtonEvent(ActionEvent event) {
-        if (loginState == LOGGED_IN) {
+        if (loginState == LOGGED_IN_STUDENT) {
 
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
