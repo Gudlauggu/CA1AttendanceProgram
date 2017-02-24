@@ -18,7 +18,7 @@
             <TableColumn fx:id="clmAttending" maxWidth="1.7976931348623157E308" prefWidth="217.0" text="Attending" />
         </columns>
       </TableView>
-      <ComboBox fx:id="CBLesson" layoutX="36.0" layoutY="23.0" prefWidth="150.0" promptText="Choose a lesson" />
+      <ComboBox fx:id="CBLesson" layoutX="36.0" layoutY="23.0" prefHeight="31.0" prefWidth="201.0" promptText="Choose a lesson" />
       <HBox layoutY="533.0" prefHeight="54.0" prefWidth="540.0" styleClass="hBox">
          <children>
             <Button mnemonicParsing="false" onAction="#mercyButton" prefHeight="37.0" prefWidth="98.0" text="Mercy!" textFill="WHITE" />

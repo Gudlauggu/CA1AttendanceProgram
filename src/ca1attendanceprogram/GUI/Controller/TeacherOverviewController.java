@@ -57,7 +57,7 @@ public class TeacherOverviewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        makeAStudent();
+        
         updateFields();
         cbChoicer();
         addListener();
