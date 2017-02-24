@@ -15,9 +15,9 @@
          <center>
             <TableView fx:id="tblAllAbsence" prefHeight="513.0" prefWidth="434.0" BorderPane.alignment="CENTER">
               <columns>
-                  <TableColumn fx:id="clmDate" prefWidth="142.0" text="Date" />
-                <TableColumn fx:id="clmClass" prefWidth="136.0" text="Class" />
-                <TableColumn fx:id="clmTeacher" prefWidth="289.0" text="Teacher" />
+                  <TableColumn fx:id="clmDate" prefWidth="115.0" text="Date" />
+                <TableColumn fx:id="clmClass" prefWidth="203.0" text="Class" />
+                <TableColumn fx:id="clmTeacher" prefWidth="249.0" text="Teacher" />
               </columns>
                <padding>
                   <Insets left="12.0" right="12.0" />

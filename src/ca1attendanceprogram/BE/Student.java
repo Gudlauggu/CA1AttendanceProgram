@@ -21,21 +21,21 @@ public class Student extends Person {
         Random rand = new Random();
         absencePercentage = rand.nextInt(101) + "";
         if (rand.nextInt(2) == 1) {
-            attendingTest = "Offline";
+            attendingTest = "Absent";
+        } else if (rand.nextInt(2) == 0) {
+            attendingTest = "Attending";
         } else {
-            attendingTest = "Online";
+            attendingTest = "Absent(Mercy Requested)";
         }
     }
 
-    public String getAttendingTest()
-      {
+    public String getAttendingTest() {
         return attendingTest;
-      }
+    }
 
-    public void setAttendingTest(String attendingTest)
-      {
+    public void setAttendingTest(String attendingTest) {
         this.attendingTest = attendingTest;
-      }
+    }
 
     public String getAbsencePercentage() {
         return absencePercentage;

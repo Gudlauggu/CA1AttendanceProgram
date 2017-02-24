@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="540.0" stylesheets="@MainLayout.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca1attendanceprogram.GUI.Controller.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="540.0" stylesheets="@MainLayout.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca1attendanceprogram.GUI.Controller.LoginController">
     <children>
       <HBox layoutY="219.0" prefHeight="46.0" prefWidth="540.0" spacing="7.0" styleClass="hBox">
          <children>
@@ -51,7 +51,7 @@
                   <children>
                       <TextField fx:id="txtUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Username" />
                   <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Password" styleClass="text-field" />
-                      <CheckBox fx:id="boxRemUsername" mnemonicParsing="false" text="Remember Username" textFill="WHITE" />
+                      <CheckBox fx:id="boxRemUsername" mnemonicParsing="false" text="Remember Me" textFill="WHITE" />
                   </children>
                   <padding>
                       <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -65,5 +65,6 @@
             <Label fx:id="lblConfirmation" alignment="CENTER" layoutX="10.0" layoutY="183.0" prefHeight="21.0" prefWidth="240.0" styleClass="label-small" text="Your Password has been sent" textFill="WHITE" visible="false" />
          </children>
       </AnchorPane>
+      <Label fx:id="lblAttending" layoutX="292.0" layoutY="192.0" prefHeight="18.0" prefWidth="201.0" styleClass="label-headline" text="You are now attending" textFill="WHITE" visible="false" />
     </children>
 </AnchorPane>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca1attendanceprogram.BLL;
+package ca1attendanceprogram.DAL;
 
 import ca1attendanceprogram.BE.Lesson;
 import ca1attendanceprogram.BE.Student;

@@ -67,4 +67,12 @@ public class Lesson {
         this.date = date;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

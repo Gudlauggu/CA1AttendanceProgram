@@ -6,9 +6,11 @@
 package ca1attendanceprogram.GUI.Controller;
 
 import ca1attendanceprogram.BE.*;
-import ca1attendanceprogram.BLL.LoginHandler;
+import ca1attendanceprogram.BLL.LoginManager;
+import ca1attendanceprogram.BLL.UsernameManager;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -33,7 +35,7 @@ import javafx.stage.StageStyle;
  * @author Mecaa
  */
 public class LoginController implements Initializable {
-
+    
     @FXML
     private TextField txtUsername;
     @FXML
@@ -67,29 +69,39 @@ public class LoginController implements Initializable {
     private static final int WRONG_PASSWORD = 3;
     private static final int LOGGED_IN_TEACHER = 4;
     private int loginState = NOT_LOGGED_IN;
-    private static final LoginHandler loginHandler = new LoginHandler();
+    private static final LoginManager LOGIN_MANAGER = new LoginManager();
+    private static final UsernameManager USER_MANAGER = new UsernameManager();
     private Person person = null;
-
+    @FXML
+    private Label lblAttending;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Image logo = new Image("file:DATA/BASYDVEST_negativ.png");
         imgLogo.setImage(logo);
+        ArrayList<String> strings = USER_MANAGER.loadProp();
+        if (!strings.isEmpty()) {
+            txtUsername.setText(strings.get(0));
+            txtPassword.setText(strings.get(1));
+            boxRemUsername.setSelected(true);
+        }
     }
-
+    
     @FXML
     private void loginEvent(ActionEvent event) throws IOException {
         //Test Login
-        person = loginHandler.LoginChecker(txtUsername.getText().trim(), txtPassword.getText().trim());
+        person = LOGIN_MANAGER.LoginChecker(txtUsername.getText().trim(), txtPassword.getText().trim());
         if (loginState != LOGGED_IN
                 && person != null) {
             if (person.getClass() == Student.class) {
-
+                saveUsername();
                 loginState = LOGGED_IN;
                 activeState();
             } else if (person.getClass() == Teacher.class) {
+                saveUsername();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ca1attendanceprogram/GUI/View/TeacherOverview.fxml"));
-
+                
                 Parent root = loader.load();
                 Stage subStage = new Stage();
                 subStage.setScene(new Scene(root));
@@ -97,21 +109,28 @@ public class LoginController implements Initializable {
                 subStage.show();
                 Stage stage = (Stage) btnHiddenButton.getScene().getWindow();
                 stage.close();
-
+                
             }
         } else if (loginState == NOT_LOGGED_IN && person == null) {
-
+            
             loginState = WRONG_PASSWORD;
             activeState();
         } else if (loginState == LOGGED_IN) {
-
+            if (btnLogin.getText().equals("Attend Class")) {
+                lblAttending.setVisible(true);
+                btnLogin.setText("Leave Class");
+            } else if (btnLogin.getText().equals("Leave Class")) {
+                lblAttending.setVisible(false);
+                btnLogin.setText("Attend Class");
+            }
+            
         }
     }
-
+    
     @FXML
     /**
-     * @Param closeEvent a dual event that triggers differently based on
-     * loginState
+     * @Param closeEvent is an event that triggers differently based on the
+     * current login state
      *
      */
     private void closeEvent(ActionEvent event) {
@@ -121,10 +140,11 @@ public class LoginController implements Initializable {
         if (loginState == LOGGED_IN) {
             loginState = NOT_LOGGED_IN;
             activeState();
-
+            lblAttending.setVisible(false);
+            
         }
     }
-
+    
     public void activeState() {
         switch (loginState) {
             case LOGGED_IN:
@@ -139,19 +159,21 @@ public class LoginController implements Initializable {
                 btnHiddenButton.setText("See Absense");
                 lblConfirmation.setVisible(false);
                 lblStudentName.setText(person.getName());
+                boxRemUsername.setDisable(true);
                 break;
             case NOT_LOGGED_IN:
                 txtUsername.setDisable(false);
                 txtPassword.setDisable(false);
-                if (boxRemUsername.isIndeterminate()) {
+                if (!boxRemUsername.isSelected()) {
                     txtUsername.clear();
+                    txtPassword.clear();
                 }
-                txtPassword.clear();
-
+                
                 ancAttendence.setVisible(false);
                 btnHiddenButton.setVisible(false);
                 btnLogin.setText("Login");
                 btnClose.setText("Quit");
+                boxRemUsername.setDisable(false);
                 break;
             case WRONG_PASSWORD:
                 btnHiddenButton.setVisible(true);
@@ -163,12 +185,12 @@ public class LoginController implements Initializable {
                 break;
         }
     }
-
+    
     @FXML
     private void HiddenButtonEvent(ActionEvent event) throws IOException {
         if (loginState == LOGGED_IN) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ca1attendanceprogram/GUI/View/AbsenceOverview.fxml"));
-
+            
             Parent root = loader.load();
             Stage subStage = new Stage();
             subStage.setScene(new Scene(root));
@@ -176,13 +198,13 @@ public class LoginController implements Initializable {
             subStage.show();
             Stage stage = (Stage) btnHiddenButton.getScene().getWindow();
             stage.close();
-
+            
         } else if (loginState == WRONG_PASSWORD) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Forgotten Password");
             alert.setHeaderText("Email: " + txtUsername.getText() + "@easv365.dk");
             alert.setContentText("Send password to this email");
-
+            
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 lblConfirmation.setVisible(true);
@@ -193,7 +215,15 @@ public class LoginController implements Initializable {
             }
         }
     }
-
+    
+    public void saveUsername() {
+        if (boxRemUsername.isSelected()) {
+            USER_MANAGER.saveUsername(txtUsername.getText().trim(), txtPassword.getText().trim());
+        } else {
+            USER_MANAGER.resetFile();
+        }
+    }
+    
     public void onKeyPressed(KeyCode code) throws IOException {
         if (code.equals(KeyCode.ENTER)) {
             loginEvent(new ActionEvent());
