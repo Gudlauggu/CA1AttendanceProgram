@@ -30,9 +30,9 @@ public class SQLConnectionManager
     
     private void setupDataSource()
       {
-        ds.setDatabaseName("Gudlaug.School");
-        ds.setUser("CS2016B_10");
-        ds.setPassword("CS2016B_10");
+        ds.setDatabaseName("Kahani_Attendance");
+        ds.setUser("CS2016B_11");
+        ds.setPassword("CS2016B_11");
         ds.setPortNumber(1433);
         ds.setServerName("10.176.111.31");
       }
