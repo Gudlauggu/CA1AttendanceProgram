@@ -72,3 +72,4 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+Resources/config.properties
