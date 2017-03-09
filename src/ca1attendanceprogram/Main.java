@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca1attendanceprogram;
 
 import ca1attendanceprogram.GUI.Controller.LoginController;
@@ -22,7 +17,7 @@ import javafx.stage.StageStyle;
  *
  * @author Mecaa
  */
-public class APP extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -37,7 +32,7 @@ public class APP extends Application {
             try {
                 contr.onKeyPressed(code.getCode());
             } catch (IOException ex) {
-                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -50,3 +45,5 @@ public class APP extends Application {
     }
 
 }
+
+
