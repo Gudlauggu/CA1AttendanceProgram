@@ -21,51 +21,27 @@ public class LoginHandler {
     private static final int WRONG_PASSWORD = 3;
     private static final int LOGGED_IN_TEACHER = 4;
 
-    StudentHandler dm = new StudentHandler();
-          
-    //private ArrayList<Person> persons = new ArrayList();
-    
-    private ArrayList<String> students = dm.getStudent();
-    //private Student testStudent = new Student("Stud1234", "stud9874@easv365", 1, "pas", "Student Tester");
+    private ArrayList<Person> persons = new ArrayList();
+    private Student testStudent = new Student("Stud1234", "stud9874@easv365", 1, "pas", "Student Tester");
     ;
-    //private Teacher testTeacher = new Teacher("Teac1234", "Teac1234@easv365", 2, "pas", "Teacher Tester");
+    private Teacher testTeacher = new Teacher("Teac1234", "Teac1234@easv365", 2, "pas", "Teacher Tester");
 
     ;
 
     public LoginHandler() {
 
-//        persons.add(testStudent);
-//        persons.add(testTeacher);
-
-        
-        for (String student : students)
-          {
-            
-              System.out.println(student);
-          }
-        
+        persons.add(testStudent);
+        persons.add(testTeacher);
     }
 
-//    public Student LoginChecker(String username, String password) {
-//        for (String student : students) {
-//            if (student.getUserName().equals(username)) {
-//                if (student.getPassword().equals(password)) {
-//                    return student;
-//                }
-//            }
-//        }
-//        return null;
-//    }
-    
-    public String LoginChecker (String username, String password)
-      {
-          for (String student : students)
-            {
-              if(dm.getStudUsername().equals(username)){
-                  if(dm.getStudPassword().equals(password))
-                      return student;
-              }
+    public Person LoginChecker(String username, String password) {
+        for (Person person : persons) {
+            if (person.getUserName().equals(username)) {
+                if (person.getPassword().equals(password)) {
+                    return person;
+                }
             }
-          return null;
-      }
+        }
+        return null;
+    }
 }

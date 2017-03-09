@@ -1,9 +1,7 @@
 package ca1attendanceprogram;
 
-import ca1attendanceprogram.DAL.StudentHandler;
 import ca1attendanceprogram.GUI.Controller.LoginController;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -37,12 +35,15 @@ public class Main extends Application {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        
     }
-    
 
-    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
 
 
