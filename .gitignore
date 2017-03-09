@@ -72,3 +72,5 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+nbproject/jfx-impl_backup.xml
+nbproject/UPDATED.TXT
